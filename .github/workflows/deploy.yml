@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy Flask to EC2
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Deploy to EC2
@@ -19,10 +19,9 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            sudo rm -rf UTS_CICD
-            sudo git clone https://github.com/erlangga1194/UTS_CICD.git
             cd UTS_CICD
+            sudo git pull
             sudo docker stop ecommerce-app || true
             sudo docker rm ecommerce-app || true
             sudo docker build -t ecommerce-app .
-            sudo docker run -d -p 80:5000 ecommerce-app
+            sudo docker run -d -p 80:5000 --name ecommerce-app ecommerce-app
