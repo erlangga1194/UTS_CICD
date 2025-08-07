@@ -19,9 +19,9 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            cd ecommerce-app/frontend
-            git pull
-            docker stop ecommerce-app || true
-            docker rm ecommerce-app || true
-            docker build -t ecommerce-app .
-            docker run -d -p 80:5000 ecommerce-app
+            cd UTS_CICD/frontend
+            sudo git pull
+            sudo docker stop ecommerce-app || true
+            sudo docker rm ecommerce-app || true
+            sudo docker build -t ecommerce-app .
+            sudo docker run -d -p 80:5000 ecommerce-app
