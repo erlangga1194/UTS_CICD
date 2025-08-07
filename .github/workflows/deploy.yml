@@ -22,6 +22,6 @@ jobs:
             cd UTS_CICD
             sudo git pull
             sudo docker stop $(sudo docker ps -q) || true
-            sudo docker rm $(sudo docker ps -aq) 
+            sudo docker rm $(sudo docker ps -aq) || true
             sudo docker build -t ecommerce-app .
             sudo docker run -d -p 80:5000 --name ecommerce-app ecommerce-app
