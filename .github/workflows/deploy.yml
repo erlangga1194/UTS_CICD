@@ -19,7 +19,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            rm -rf UTS_CICD
+            sudo rm -rf UTS_CICD
             sudo git clone https://github.com/erlangga1194/UTS_CICD.git
             cd UTS_CICD/frontend
             sudo docker stop ecommerce-app || true
