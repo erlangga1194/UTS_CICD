@@ -21,7 +21,7 @@ jobs:
           script: |
             sudo rm -rf UTS_CICD
             sudo git clone https://github.com/erlangga1194/UTS_CICD.git
-            cd UTS_CICD/frontend
+            cd UTS_CICD
             sudo docker stop ecommerce-app || true
             sudo docker rm ecommerce-app || true
             sudo docker build -t ecommerce-app .
