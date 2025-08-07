@@ -1,14 +1,25 @@
 from flask import Flask, render_template
 import pymysql
 import boto3
+import os
 
-app = Flask(__name__)
+# 👇 Sesuaikan lokasi template dan static
+app = Flask(
+    __name__,
+    template_folder='frontend/templates',
+    static_folder='frontend/static'
+)
 
 # Backend config
 import backend.config as cfg
 
 # RDS connection
-conn = pymysql.connect(host=cfg.RDS_HOST, user=cfg.DB_USER, password=cfg.DB_PASS, db=cfg.DB_NAME)
+conn = pymysql.connect(
+    host=cfg.RDS_HOST,
+    user=cfg.DB_USER,
+    password=cfg.DB_PASS,
+    db=cfg.DB_NAME
+)
 cur = conn.cursor()
 
 # S3 config
@@ -26,4 +37,4 @@ def index():
     return render_template('index.html', products=products, images=image_urls)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000)
